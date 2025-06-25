@@ -188,7 +188,7 @@ private
     size-indent  nothing   str = refl
 
     indents : Maybe String → TreeStr → TreeStr
-    indents = Maybe.rec id λ s → mapₙ (s ++ₛ_)
+    indents = Maybe.rec id (mapₙ ∘ _++ₛ_)
 
     size-indents : ∀ ma t → #nodes (indents ma t) ＝ #nodes t
     size-indents (just pad) t = #nodes-mapₙ (pad ++ₛ_) t

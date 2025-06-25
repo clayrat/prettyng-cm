@@ -28,10 +28,10 @@ open Doc public
 
 render : Doc → String
 render = Core.render
-       ∘ Maybe.rec Core.empty (  foldr₁ (λ l r → -- TODO inlined max
+       ∘ Maybe.rec Core.empty (  foldr₁ (λ l r → -- TODO inlined min
                                            if l .Core.Block.height ≤? r .Core.Block.height
-                                             then r
-                                             else l)
+                                             then l
+                                             else r)
                                ∘ _∷¹_ $²_) 
        ∘ unconsᵐ
        ∘ runDoc
