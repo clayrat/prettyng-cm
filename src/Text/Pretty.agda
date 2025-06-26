@@ -49,7 +49,7 @@ emptyD : Doc
 emptyD = text ""
 
 char : Char → Doc
-char c = text (list→string (c ∷ []))
+char c = text (char→string c)
 
 spaces : ℕ → Doc
 spaces n = text (replicateₛ n ' ')
