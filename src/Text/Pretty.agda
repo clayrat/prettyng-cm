@@ -52,7 +52,7 @@ char : Char → Doc
 char c = text (list→string (c ∷ []))
 
 spaces : ℕ → Doc
-spaces n = text (list→string $ replicate n ' ')
+spaces n = text (replicateₛ n ' ')
 
 semi colon comma space dot : Doc
 semi = char ';'; colon = char ':'

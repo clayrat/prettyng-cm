@@ -171,7 +171,7 @@ private
       let l = x.lastWidth in
       if is-zero? l
         then nothing
-        else just (list→string (replicate l ' '))
+        else just (replicateₛ l ' ')
 
     size-pad : Maybe.rec 0 lengthₛ pad ＝ x.lastWidth
     size-pad with x.lastWidth
