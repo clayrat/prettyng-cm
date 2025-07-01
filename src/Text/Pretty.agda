@@ -12,6 +12,9 @@ open import Data.Maybe as Maybe  -- .Base    using (ℕ)
 open import Data.String -- .Base
 
 open import Data.Nat.Order.Base
+open import Order.Constructions.Minmax
+open import Order.Constructions.Nat
+open decminmax ℕ-dec-total
 
 open import Data.List.NonEmpty as List⁺
 
@@ -28,11 +31,8 @@ open Doc public
 
 render : Doc → String
 render = Core.render
-       ∘ Maybe.rec Core.empty (  foldr₁ (λ l r → -- TODO inlined min
-                                           if l .Core.Block.height ≤? r .Core.Block.height
-                                             then l
-                                             else r)
-                               ∘ _∷¹_ $²_) 
+       ∘ Maybe.rec Core.empty (  foldr₁ (min-on Core.Block.height)
+                               ∘ _∷¹_ $²_)
        ∘ unconsᵐ
        ∘ runDoc
 
@@ -49,10 +49,10 @@ emptyD : Doc
 emptyD = text ""
 
 char : Char → Doc
-char c = text (char→string c)
+char c = text $ char→string c
 
 spaces : ℕ → Doc
-spaces n = text (replicateₛ n ' ')
+spaces n = text $ replicateₛ n ' '
 
 semi colon comma space dot : Doc
 semi = char ';'; colon = char ':'
