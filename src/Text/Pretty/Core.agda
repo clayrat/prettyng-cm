@@ -16,7 +16,7 @@ open import Data.Nat.Order.Base
 open import Data.Maybe as Maybe
 open import Data.Maybe.Correspondences.Unary.All as Allᴹ
 open import Data.String
-open import Data.String.Properties.Unsafe
+open import Unsafe.Data.String.Properties.Unsafe
 
 open import Order.Constructions.Minmax
 open import Order.Constructions.Nat
